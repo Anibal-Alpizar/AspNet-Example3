@@ -28,6 +28,9 @@ namespace Infraestructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Obtener todos los libros incluyendo el autor
+                    lista = ctx.Libro.Include("Autor").ToList();
+
+                    //lista = ctx.Libro.Include(x => x.Autor).ToList();
 
                 }
                 return lista;
@@ -114,7 +117,10 @@ namespace Infraestructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Obtener libro por ID ibluyendo el autor y todas sus categorías
-
+                    oLibro = ctx.Libro.Where(x => x.IdLibro == id)
+                        .Include("Autor")
+                        .Include("Categoria")
+                        .FirstOrDefault();
 
                 }
                 return oLibro;
