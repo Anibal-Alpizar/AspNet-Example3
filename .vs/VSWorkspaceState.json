@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Infraestructure",
+    "\\Infraestructure\\Repository"
   ],
-  "SelectedNode": "\\appEjemplo.sln",
+  "SelectedNode": "\\Infraestructure\\Repository\\IRepositoryLibro.cs",
   "PreviewInSolutionExplorer": false
 }

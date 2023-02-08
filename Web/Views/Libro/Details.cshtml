@@ -39,9 +39,9 @@
         </dd>
 
         <dt>
-            <img src="data:image/jpeg:charset=urf-8;base64, @Convert.ToBase64String(Model.Imagen)" 
+            <img src="data:image/jpeg:charset=urf-8;base64, @Convert.ToBase64String(Model.Imagen)"
                  alt="libro @Html.DisplayFor(model => model.Nombre)"
-                 class="bd-placeholder-img" width="200" height="250"/>       
+                 class="bd-placeholder-img" width="200" height="250" />
         </dt>
 
         <dd>
@@ -56,6 +56,20 @@
             @Html.DisplayFor(model => model.Autor.Nombre)
         </dd>
 
+        <dd>
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+
+        <dd>
+            <ul>
+                @foreach(var c in Model.Categoria)
+            {
+                <li>
+                    @c.Nombre
+                </li>
+            }
+            </ul>
+        </dd>
     </dl>
 </div>
 <p>

@@ -32,18 +32,36 @@ namespace Web.Controllers
         }
 
         // GET: Libro/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             IServiceLibro _serviceLibro = new ServiceLibro();
             Libro oLibro = null;
             try
             {
-                oLibro = _serviceLibro.GetLibroByID(id);
+                if(id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                oLibro = _serviceLibro.GetLibroByID(Convert.ToInt32(id));
+                if(oLibro == null)
+                {
+                    TempData["Message"] = "No existe el libro solicitado";
+                    // controller
+                    TempData["Redirect"] = "Libro";
+                    // action
+                    TempData["Redirect Action"] = "Index";
+                    return RedirectToAction("Default", "Error");
+                }
                 return View(oLibro);
             }
-            catch
+            catch 
             {
-                throw;
+                TempData["Message"] = "Error al procesar los datos";
+                // controller
+                TempData["Redirect"] = "Libro";
+                // action
+                TempData["Redirect Action"] = "Index";
+                return RedirectToAction("Default", "Error");
             }
             return View();
         }
