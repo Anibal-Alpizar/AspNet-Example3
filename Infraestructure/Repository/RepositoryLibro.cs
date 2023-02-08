@@ -59,7 +59,12 @@ namespace Infraestructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Obtener libros por Autor
+                    //oLibro = ctx.Libro.
+                    //    Include("Autor").
+                    //    Where(x => x.Equals(idAutor)).ToList();
 
+                    oLibro = ctx.Libro.
+                           Where(l => l.IdLibro == idAutor).Include("Autor").ToList();
 
                 }
                 return oLibro;
@@ -88,8 +93,9 @@ namespace Infraestructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Obtener los libros que pertenecen a una categoría
-
-
+                    lista = ctx.Libro.Include(c => c.Categoria).
+                        Where(c => c.Categoria.Any(o => o.IdCategoria == idCategoria))
+                        .ToList();
                 }
                 return lista;
             }
@@ -148,8 +154,7 @@ namespace Infraestructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Obtener Libros por nombre
-
-
+                    oLibro = ctx.Libro.ToList().FindAll(x => x.Nombre.ToLower().Contains(nombre.ToLower()));
                 }
                 return oLibro;
             }

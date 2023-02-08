@@ -20,6 +20,8 @@ namespace Infraestructure.Repository
                 {                    
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Obtener todas las ordenes incluyendo el cliente y el usuario
+                    ordenes = ctx.Orden.Include("Cliente").Include("Usuario").ToList();
+
 
                 }
                 return ordenes;
@@ -50,10 +52,14 @@ namespace Infraestructure.Repository
                     //Obtener una ordene incluyendo el cliente, el usuario,
                     //// el detalle de la orden y la infomación de cada libro
                     
-
+                    orden = ctx.Orden.
+                        Include("Cliente").
+                        Include("Usuario").
+                        Include("OrdenDetalle").
+                        Where(o => o.IdOrden == id).
+                        FirstOrDefault();
                 }
                 return orden;
-
             }
             catch (DbUpdateException dbEx)
             {
