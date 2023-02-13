@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Infraestructure",
-    "\\Infraestructure\\Repository"
+    "\\Infraestructure\\Repository",
+    "\\Web",
+    "\\Web\\Controllers"
   ],
-  "SelectedNode": "\\Infraestructure\\Repository\\IRepositoryLibro.cs",
+  "SelectedNode": "\\Web\\Controllers\\ErrorController.cs",
   "PreviewInSolutionExplorer": false
 }
